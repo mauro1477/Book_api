@@ -59,7 +59,7 @@ const origin = {
 
 const postLimiter = rateLimit({
   windowMs: 1 * 60 * 1000,
-  max: 1,
+  max: 1
 })
 
 const limiter = rateLimit({
