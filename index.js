@@ -58,7 +58,7 @@ const origin = {
 }
 
 const postLimiter = rateLimit({
-  windowMs: 1 * 60 * 1000
+  windowMs: 1 * 60 * 1000,
   max: 1,
 })
 
@@ -71,7 +71,7 @@ const deleteBook = (request, response) => {
   if (!request.header('apiKey') || request.header('apiKey') !== process.env.API_KEY) {
     return response.status(401).json({ status: 'error', message: 'Unauthorized.' })
   }
-  
+
 }
 const getBooks = (request, response) => {
   pool.query('SELECT * FROM books', (error, results) => {
