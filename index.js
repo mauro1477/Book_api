@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const { pool } = require('./config')
+const cors = require('cors')
 const app = express()
 const helmet = require('helmet')
 const compression = require('compression')
