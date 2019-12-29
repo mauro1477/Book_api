@@ -8,23 +8,18 @@ const app = express()
 //Helmet helps you secure your Express apps by setting various HTTP headers. It's not a silver bullet, but it can help!
 //Helmet is a collection of 14 smaller middleware functions that set HTTP response headers. Running app.use(helmet()) will not include all of these middleware functions by default.
 //const helmet = require('helmet')
-const compression = require('compression')
-const rateLimit = require('express-rate-limit')
-const { body, check } = require('express-validator')
+//const compression = require('compression')
+//const rateLimit = require('express-rate-limit')
+//const { body, check } = require('express-validator')
 
-app
-  .route('/books')
-  // GET endpoint
-  .get(getBooks)
-  // POST endpoint
-  .post(addBook)
-  
+
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
-app.use(cors(origin))////////////////////////////CORS IS USED TO PREVENT HIJACKS
-app.use(limiter)
-app.use(compression())
+// app.use(cors(origin))////////////////////////////CORS IS USED TO PREVENT HIJACKS
+// app.use(limiter)
+// app.use(compression())
 // app.use(helmet({
 //   frameguard: false
 // }))
@@ -105,7 +100,13 @@ const addBook = (request, response) => {
 }
 
 
-
+app
+  .route('/books')
+  // GET endpoint
+  .get(getBooks)
+  // POST endpoint
+  .post(addBook)
+  
 // Start server
 app.listen(process.env.PORT || 3002, () => {
   console.log(`Server listening`)
