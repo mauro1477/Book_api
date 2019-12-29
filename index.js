@@ -12,7 +12,7 @@ const origin = {
 }
 
 app.get('/', function(request, response){
-    response.sendFile('/views/login.html');
+    response.sendFile('login.html');
 });
 
 const getBooks = (request, response) => {
