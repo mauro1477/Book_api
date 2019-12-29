@@ -6,7 +6,6 @@ const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-
 const isProduction = process.env.NODE_ENV === 'production'
 const origin = {
   origin: isProduction ? 'https://safe-waters-27889.herokuapp.com/' : '*',
