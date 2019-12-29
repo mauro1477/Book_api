@@ -10,4 +10,4 @@ const pool = new Pool({
   ssl: isProduction,
 })
 
-module.exports = { pool, helmet, compression, rateLimit, body, check }
+module.exports = { pool }
