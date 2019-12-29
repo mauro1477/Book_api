@@ -17,6 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 app.use(cors(origin))////////////////////////////CORS IS USED TO PREVENT HIJACKS
 app.use(limiter)
+app.use(compression())
+app.use(helmet())
 app.post('/books', postLimiter, addBook)
 
 app.post(
