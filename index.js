@@ -12,6 +12,13 @@ const compression = require('compression')
 const rateLimit = require('express-rate-limit')
 const { body, check } = require('express-validator')
 
+app
+  .route('/books')
+  // GET endpoint
+  .get(getBooks)
+  // POST endpoint
+  .post(addBook)
+  
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
@@ -97,12 +104,7 @@ const addBook = (request, response) => {
   })
 }
 
-app
-  .route('/books')
-  // GET endpoint
-  .get(getBooks)
-  // POST endpoint
-  .post(addBook)
+
 
 // Start server
 app.listen(process.env.PORT || 3002, () => {
