@@ -34,12 +34,12 @@ const addBook = (request, response) => {
 }
 
 
-app
-  .route('/books')
-  // GET endpoint
-  .get(getBooks)
-  // POST endpoint
-  .post(addBook)
+// app
+//   .route('/books')
+//   // GET endpoint
+//   .get(getBooks)
+//   // POST endpoint
+//   .post(addBook)
 
 // Start server
 app.listen(process.env.PORT || 3002, () => {
