@@ -11,9 +11,12 @@ const origin = {
   origin: isProduction ? 'https://safe-waters-27889.herokuapp.com/' : '*',
 }
 
-app.get('/', function(request, response){
-    response.sendFile('login.html');
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/views/login.html')
+		console.log('app.get');
+		console.log(req.action);
 });
+
 
 const getBooks = (request, response) => {
   pool.query('SELECT * FROM books', (error, results) => {
