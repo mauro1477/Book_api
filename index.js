@@ -18,7 +18,9 @@ app.use(cors())
 app.use(cors(origin))////////////////////////////CORS IS USED TO PREVENT HIJACKS
 app.use(limiter)
 app.use(compression())
-app.use(helmet())
+app.use(helmet({
+  frameguard: false
+}))
 app.post('/books', postLimiter, addBook)
 
 app.post(
