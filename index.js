@@ -34,7 +34,7 @@ app.post('/auth', function(request, response) {
       throw error
     }
     	console.log("found the book");
-  })
+  }
 });
 
 const getBooks = (request, response) => {
