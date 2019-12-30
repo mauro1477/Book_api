@@ -24,10 +24,10 @@ app.post('/auth', function(request, response) {
   console.log('/auth');
   //const {author_name, book_name} = request.body//Make sure these name match to the html page
 	var author_name = request.body.author;
-	var book_name = request.body.book;
+	var title_name = request.body.title;
 	console.log(author_name);
-	console.log(book_name);
-  pool.query('SELECT * FROM BOOKS WHERE author =  author_name AND book = book_name', (error, results) => {
+	console.log(title_name);
+  pool.query('SELECT * FROM BOOKS WHERE author =  author_name AND book = title_name', (error, results) => {
     if(error){
       throw error
     }
