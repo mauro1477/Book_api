@@ -5,6 +5,13 @@ const app = express()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+const express = require('express')
+const helmet = require('helmet')
+
+const app = express()
+
+app.use(helmet())
+
 
 const isProduction = process.env.NODE_ENV === 'production'
 const origin = {
@@ -15,7 +22,7 @@ app.use(express.static(__dirname + '/'));
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/views/login.html')
-		console.log(req.action);
+		//console.log(req.action);
 });
 
 const getBooks = (request, response) => {
