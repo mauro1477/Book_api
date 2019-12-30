@@ -20,6 +20,23 @@ app.get('/', function(req, res) {
 		console.log(req.action);
 });
 
+app.post('/auth', function(request, response) {
+  console.log('/auth');
+  const {author_name, book_name} = request.body//Make sure these name match to the html page
+	// var author_name = request.body.author;
+	// var book_name = request.body.book;
+	console.log(author_name);
+	console.log(book_name);
+  pool.query(SELECT * FROM customers WHERE author =  $1 AND book = $2,
+  (error, results) => {
+    if(error)
+    {
+      throw error
+    }
+    	console.log("found the book");
+  })
+});
+
 const getBooks = (request, response) => {
   pool.query('SELECT * FROM books', (error, results) => {
     if (error) {
