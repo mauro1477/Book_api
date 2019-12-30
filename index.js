@@ -27,7 +27,7 @@ app.post('/auth', function(request, response) {
 	// var book_name = request.body.book;
 	console.log(author_name);
 	console.log(book_name);
-  pool.query(SELECT * FROM customers WHERE author =  $1 AND book = $2,
+  pool.query(SELECT * FROM BOOKS WHERE author =  $1 AND book = $2),
   (error, results) => {
     if(error)
     {
