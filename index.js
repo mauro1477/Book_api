@@ -6,18 +6,6 @@ const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-var mysql = require('mysql');
-
-var pool  = mysql.createPool({
-    host: process.env.DB_HOST || 'localhost',
-    port: process.env.DB_PORT || 5432,  //probably 5432 for you
-    database: process.env.DB_NAME || 'api',   //enter in your username password for pg
-    user: process.env.DB_USER || 'me',
-    password:process.env.DB_PASSWORD || 'Dukey7725$$@@'
-});
-
-exports.pool = pool;
-
 const isProduction = process.env.NODE_ENV === 'production'
 const origin = {
   origin: isProduction ? 'https://safe-waters-27889.herokuapp.com/' : '*',
@@ -25,45 +13,25 @@ const origin = {
 
 app.use(express.static(__dirname + '/'));
 
-app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/views/login.html')
-		console.log(req.action);
-});
-//
-app.post('/auth', function(request, response) {
-  console.log('/auth');
-  //const {author, title} = request.body//Make sure these name match to the html page
-	var author_name = request.body.author;
-	var title_name = request.body.title;
-	console.log(author_name);
-	console.log(title_name);
-  pool.query('SELECT * FROM books WHERE author =  $1 AND title = $2', [author_name, title_name], (error, results) => {
-    if(error){
+const getBooks = (request, response) => {
+  pool.query('SELECT * FROM books', (error, results) => {
+    if (error) {
       throw error
     }
-    	response.status(200).json(results.rows)
+    response.status(200).json(results.rows)
   })
-});
-//
-// const getBooks = (request, response) => {
-//   pool.query('SELECT * FROM books', (error, results) => {
-//     if (error) {
-//       throw error
-//     }
-//     response.status(200).json(results.rows)
-//   })
-// }
-//
-// const addBook = (request, response) => {
-//   const { author, title } = request.body
-//
-//   pool.query('INSERT INTO books (author, title) VALUES ($1, $2)', [author, title], error => {
-//     if (error) {
-//       throw error
-//     }
-//     response.status(201).json({ status: 'success', message: 'Book added.' })
-//   })
-// }
+}
+
+const addBook = (request, response) => {
+  const { author, title } = request.body
+
+  pool.query('INSERT INTO books (author, title) VALUES ($1, $2)', [author, title], error => {
+    if (error) {
+      throw error
+    }
+    response.status(201).json({ status: 'success', message: 'Book added.' })
+  })
+}
 
 
 // app
@@ -73,6 +41,27 @@ app.post('/auth', function(request, response) {
 //   // POST endpoint
 //   .post(addBook)
 
+app.get('/', function(req, res) {
+    // res.sendFile(__dirname + '/views/login.html')
+		// console.log(req.action);
+    console.log(getBooks);
+});
+  //
+  // app.post('/auth', function(request, response) {
+  //   console.log('/auth');
+  //   //const {author, title} = request.body//Make sure these name match to the html page
+  // 	var author_name = request.body.author;
+  // 	var title_name = request.body.title;
+  // 	console.log(author_name);
+  // 	console.log(title_name);
+  //   pool.query('SELECT * FROM books WHERE author =  $1 AND title = $2', [author_name, title_name], (error, results) => {
+  //     if(error){
+  //       throw error
+  //     }
+  //     	response.status(200).json(results.rows)
+  //   })
+  // });
+  //
 // Start server
 app.listen(process.env.PORT || 3002, () => {
   console.log(`Server listening`)
