@@ -27,11 +27,11 @@ app.post('/auth', function(request, response) {
 	var title_name = request.body.title;
 	console.log(author_name);
 	console.log(title_name);
-  pool.query('SELECT * FROM BOOKS WHERE author =  author_name AND book = title_name', (error, results) => {
+  pool.query('SELECT * FROM BOOKS WHERE author ==  author_name AND book == title_name', (error, results) => {
     if(error){
       throw error
     }
-    	console.log("found the book");
+    	response.status(200).json(results.rows)
   })
 });
 
