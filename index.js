@@ -1,7 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const { pool } = require('./config')
-const pool = new Pool()
 const app = express()
 
 app.use(bodyParser.json())
@@ -28,7 +27,7 @@ app.post('/auth', function(request, response) {
 	var title_name = request.body.title;
 	console.log(author_name);
 	console.log(title_name);
-  pool.query('SELECT * FROM books WHERE author ==  author_name AND title == title_name', (error, results) => {
+  pool.query('SELECT * FROM books WHERE author ==  $1 AND title == $2', [author_name, title_name], (error, results) => {
     if(error){
       throw error
     }
