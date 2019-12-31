@@ -23,6 +23,7 @@ app.get('/', function(req, res) {
 app.post('/auth', function(request, response) {
   console.log('/auth');
   //const {author, title} = request.body//Make sure these name match to the html page
+  
 	var author_name = request.body.author;
 	var title_name = request.body.title;
 	console.log(author_name);
