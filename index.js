@@ -42,8 +42,8 @@ const addBook = (request, response) => {
 //   .post(addBook)
 
 app.get('/', function(req, res) {
-    // res.sendFile(__dirname + '/views/login.html')
-		// console.log(req.action);
+    res.sendFile(__dirname + '/views/login.html')
+		console.log(req.action);
     console.log(getBooks);
 });
   //
