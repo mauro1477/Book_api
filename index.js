@@ -24,7 +24,6 @@ const getBooks = (request, response) => {
 
 const addBook = (request, response) => {
   const { author, title } = request.body
-
   pool.query('INSERT INTO books (author, title) VALUES ($1, $2)', [author, title], error => {
     if (error) {
       throw error
@@ -46,12 +45,10 @@ app.get('/', function(req, res) {
 		console.log(req.action);
 });
 
-app.post('/auth', function(request, response) {
-  console.log('/auth');
-
+app.post('/request_book_node', function(request, response) {
+  console.log('/request_book_node');
 	var id_node = request.body.id;
   const id_node_INT = parseInt(id_node);
-
   pool.query('SELECT * FROM books WHERE id = $1',[id_node_INT], (error, results) => {
     if (error) {
       throw error
@@ -60,32 +57,18 @@ app.post('/auth', function(request, response) {
   })
 });
 
-// app.get('/inventory', function(req,res) {
-//   var query = "select * from inventory where ingredient_quantity > 10;";
-//   var query1 = "select * from inventory where ingredient_quantity <= 10";
-//   db.task('get-everything', task => {
-//     return task.batch([
-//       task.any(query),
-//       task.any(query1)
-//     ]);
-//   })
-//   .then(data => {
-//     res.render('inventory.pug', {
-//       my_title: "Inventory Page",
-//       inventory_item_Full: data[0],
-//       inventory_item_AlmostEmpty: data[1]
-//
-//     })
-//   })
-//   .catch(error => {
-//     console.log("error");
-//     res.render('inventory.pug', {
-//       my_title: "Inventory Page",
-//       inventory_item_Full: "",
-//       inventory_item_AlmostEmpty: ""
-//     })
-//   })
-// });
+app.post('/auth', function(request, response) {
+  console.log('/auth');
+	var user_name_node = request.body.user_name_html;
+  var user_password_node = request.body.user_password_html;
+  pool.query('SELECT * FROM users WHERE user_name = $1 AND user_password = $2',[user_name_node, user_password_node], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+});
+
 
 // Start server
 app.listen(process.env.PORT || 3002, () => {
