@@ -52,7 +52,7 @@ app.post('/auth', function(request, response) {
 	var id_node = request.body.id;
   const id_node_INT = parseInt(id_node);
 
-  pool.query('SELECT * FROM books WHERE id == $1',[id_node_INT], (error, results) => {
+  pool.query('SELECT * FROM books WHERE id = $1',[id_node_INT], (error, results) => {
     if (error) {
       throw error
     }
