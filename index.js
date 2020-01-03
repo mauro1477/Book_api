@@ -78,7 +78,7 @@ app.post('/create_user', function(req, res) {
     if (error) {
       throw error
     }
-    response.status(200).json(results.rows)
+    console.log("user was created");
   })
 });
 
