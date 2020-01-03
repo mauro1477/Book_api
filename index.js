@@ -69,6 +69,13 @@ app.post('/auth', function(request, response) {
   })
 });
 
+app.post('/create_user', function(request, response) {
+  console.log('/create_user');
+  res.sendFile(__dirname + '/views/create_user.html')
+  console.log(req.action);
+
+});
+
 
 // Start server
 app.listen(process.env.PORT || 3002, () => {
