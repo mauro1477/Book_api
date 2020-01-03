@@ -48,22 +48,14 @@ app.get('/', function(req, res) {
 
 app.post('/auth', function(request, response) {
   console.log('/auth');
-  //const {author, title} = request.body//Make sure these name match to the html page
-	var author_name = request.body.author;
-	var title_name = request.body.title;
-	console.log(author_name);
-	console.log(title_name);
-  pool.query('SELECT * FROM books WHERE author =  $1 AND title = $2', [author_name, title_name], (error, results) => {
-    if(error){
+
+	var id_node = request.body.id;
+	console.log(id_node);
+  pool.query('SELECT * FROM books WHERE id == $1',[id_node], (error, results) => {
+    if (error) {
       throw error
     }
-      response.status(200).json(results.rows.title)
-      response.status(200).json(results.rows.author)
-      console.log(results);
-      console.log(results.rows);
-      console.log(results.rows[0]);
-      console.log(results.rows[0].title);
-      console.log(results.rows[0].author);
+    response.status(200).json(results.rows)
   })
 });
 
