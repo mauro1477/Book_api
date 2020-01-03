@@ -69,8 +69,8 @@ app.post('/auth', function(request, response) {
   })
 });
 
-app.post('/create_user', function(request, response) {
-  console.log('/create_user');
+app.post('/register', function(request, response) {
+  console.log('/register');
   res.sendFile(__dirname + '/views/create_user.html')
   console.log(req.action);
 
