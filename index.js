@@ -69,7 +69,7 @@ app.post('/auth', function(request, response) {
   })
 });
 
-app.post('/register', function(request, response) {
+app.post('/register', function(req, res) {
   console.log('/register');
   res.sendFile(__dirname + '/views/create_user.html')
   console.log(req.action);
