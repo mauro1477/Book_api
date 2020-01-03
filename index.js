@@ -60,7 +60,7 @@ app.post('/auth', function(request, response) {
   })
 });
 
-app.get('/register', function(req, res) {
+app.post('/register', function(req, res) {
   console.log('/register');
   res.sendFile(__dirname + '/views/create_user.html')
   console.log(req.action);
@@ -68,11 +68,12 @@ app.get('/register', function(req, res) {
 
 app.post('/create_user', function(req, res) {
   console.log('/create_user');
-  var user_name_node = request.body.user_name_html;
-  var phone_node = request.body.phone_html;
-  var Address_line_1_node = request.body.Address_line_1;
-  var Address_line_2_node = request.body.Address_line_2_html;
-  var user_password_node = request.body.user_password_html;
+  
+  var user_name_node = req.body.user_name_html;
+  var phone_node = req.body.phone_html;
+  var Address_line_1_node = req.body.Address_line_1;
+  var Address_line_2_node = req.body.Address_line_2_html;
+  var user_password_node = req.body.user_password_html;
   console.log(user_name_node);
   console.log(phone_node);
   console.log(Address_line_1_node);
