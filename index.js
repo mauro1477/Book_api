@@ -59,7 +59,7 @@ app.post('/auth', function(request, response) {
       throw error
     }
     	response.status(200).json(results.rows[0])
-      console.log(results.rows[0]);
+      console.log(results);
   })
 });
 
