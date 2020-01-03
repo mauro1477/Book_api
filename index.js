@@ -21,7 +21,6 @@ const getBooks = (request, response) => {
     response.status(200).json(results.rows)
   })
 }
-
 const addBook = (request, response) => {
   const { author, title } = request.body
   pool.query('INSERT INTO books (author, title) VALUES ($1, $2)', [author, title], error => {
@@ -31,14 +30,6 @@ const addBook = (request, response) => {
     response.status(201).json({ status: 'success', message: 'Book added.' })
   })
 }
-
-
-// app
-//   .route('/books')
-//   // GET endpoint
-//   .get(getBooks)
-//   // POST endpoint
-//   .post(addBook)
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/views/login.html')
@@ -73,7 +64,22 @@ app.post('/register', function(req, res) {
   console.log('/register');
   res.sendFile(__dirname + '/views/create_user.html')
   console.log(req.action);
+});
 
+app.post('/create_user', function(req, res) {
+  console.log('/create_user');
+  const {user_name_html, phone_html, Address_line_1, Address_line_2_html, user_password_html} = request.body
+  console.log(user_name_html);
+  console.log(phone_html);
+  console.log(Address_line_1);
+  console.log(Address_line_2_html);
+  console.log(user_password_html);
+  pool.query('INSERT INTO users (user_name, phone, address_line_1, address_line_2, user_password) VALUES ($1, $2, $3, $4, $5)',[user_name_html, phone_html, Address_line_1, Address_line_2_html, user_password_html], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
 });
 
 
