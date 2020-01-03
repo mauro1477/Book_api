@@ -42,28 +42,25 @@ const addBook = (request, response) => {
 //   .post(addBook)
 
 app.get('/', function(req, res) {
-  pool.query('SELECT * FROM books', (error, results) => {
-    if (error) {
-      throw error
-    }
-    res.status(200).json(results.rows[0].author)
-  })
+    res.sendFile(__dirname + '/views/login.html')
+		console.log(req.action);
+    //console.log(getBooks);
 });
 
-// app.post('/auth', function(request, response) {
-//   console.log('/auth');
-//   //const {author, title} = request.body//Make sure these name match to the html page
-// 	var author_name = request.body.author;
-// 	var title_name = request.body.title;
-// 	console.log(author_name);
-// 	console.log(title_name);
-//   pool.query('SELECT * FROM books WHERE author =  $1 AND title = $2', [author_name, title_name], (error, results) => {
-//     if(error){
-//       throw error
-//     }
-//     	response.status(200).json(results.rows[0])
-//   })
-// });
+app.post('/auth', function(request, response) {
+  console.log('/auth');
+  //const {author, title} = request.body//Make sure these name match to the html page
+	var author_name = request.body.author;
+	var title_name = request.body.title;
+	console.log(author_name);
+	console.log(title_name);
+  pool.query('SELECT * FROM books WHERE author =  $1 AND title = $2', [author_name, title_name], (error, results) => {
+    if(error){
+      throw error
+    }
+    	response.status(200).json(results.rows[0].author)
+  })
+});
 
 app.get('/inventory', function(req,res) {
   var query = "select * from inventory where ingredient_quantity > 10;";
