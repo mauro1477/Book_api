@@ -49,9 +49,9 @@ app.get('/', function(req, res) {
 app.post('/auth', function(request, response) {
   console.log('/auth');
 
-	var id_node = request.body.id;
+	var int(id_node) = request.body.id;
 	console.log(id_node);
-  pool.query('SELECT * FROM books WHERE id == $0',[id_node], (error, results) => {
+  pool.query('SELECT * FROM books WHERE id == $1',[id_node], (error, results) => {
     if (error) {
       throw error
     }
