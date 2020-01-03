@@ -78,7 +78,7 @@ app.post('/create_user', function(req, res) {
   console.log(Address_line_1_node);
   console.log(Address_line_2_node);
   console.log(user_password_node);
-  pool.query('INSERT INTO users (user_name, phone, address_line_1, address_line_2, user_password) VALUES ($1, $2, $3, $4, $5)',[user_name_node, phone_node, Address_line_1_node, Address_line_2_node, user_password_node, (error, results) => {
+  pool.query('INSERT INTO users (user_name, phone, address_line_1, address_line_2, user_password) VALUES ($1, $2, $3, $4, $5)',[user_name_node, phone_node, Address_line_1_node, Address_line_2_node, user_password_node], (error, results) => {
     if (error) {
       throw error
     }
