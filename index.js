@@ -44,24 +44,24 @@ const addBook = (request, response) => {
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/views/login.html')
 		console.log(req.action);
-    console.log(getBooks);
+    //console.log(getBooks);
 });
-  //
-  // app.post('/auth', function(request, response) {
-  //   console.log('/auth');
-  //   //const {author, title} = request.body//Make sure these name match to the html page
-  // 	var author_name = request.body.author;
-  // 	var title_name = request.body.title;
-  // 	console.log(author_name);
-  // 	console.log(title_name);
-  //   pool.query('SELECT * FROM books WHERE author =  $1 AND title = $2', [author_name, title_name], (error, results) => {
-  //     if(error){
-  //       throw error
-  //     }
-  //     	response.status(200).json(results.rows)
-  //   })
-  // });
-  //
+
+app.post('/auth', function(request, response) {
+  console.log('/auth');
+  //const {author, title} = request.body//Make sure these name match to the html page
+	var author_name = request.body.author;
+	var title_name = request.body.title;
+	console.log(author_name);
+	console.log(title_name);
+  pool.query('SELECT * FROM books WHERE author =  $1 AND title = $2', [author_name, title_name], (error, results) => {
+    if(error){
+      throw error
+    }
+    	response.status(200).json(results.rows)
+  })
+});
+
 // Start server
 app.listen(process.env.PORT || 3002, () => {
   console.log(`Server listening`)
