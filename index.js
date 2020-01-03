@@ -68,7 +68,7 @@ app.post('/register', function(req, res) {
 
 app.post('/create_user', function(req, res) {
   console.log('/create_user');
-  const {user_name_html, phone_html, Address_line_1, Address_line_2_html, user_password_html} = request.body
+  const {user_name_html, phone_html, Address_line_1, Address_line_2_html, user_password_html} = request.body;
   console.log(user_name_html);
   console.log(phone_html);
   console.log(Address_line_1);
