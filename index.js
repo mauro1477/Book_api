@@ -30,12 +30,6 @@ const addBook = (request, response) => {
     response.status(201).json({ status: 'success', message: 'Book added.' })
   })
 }
-
-app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/views/login.html')
-		console.log(req.action);
-});
-
 app.post('/request_book_node', function(request, response) {
   console.log('/request_book_node');
 	var id_node = request.body.id;
@@ -47,6 +41,12 @@ app.post('/request_book_node', function(request, response) {
     response.status(200).json(results.rows)
   })
 });
+
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/views/login.html')
+		console.log(req.action);
+});
+
 
 app.post('/auth', function(request, response) {
   console.log('/auth');
@@ -60,7 +60,7 @@ app.post('/auth', function(request, response) {
   })
 });
 
-app.post('/register', function(req, res) {
+app.get('/register', function(req, res) {
   console.log('/register');
   res.sendFile(__dirname + '/views/create_user.html')
   console.log(req.action);
