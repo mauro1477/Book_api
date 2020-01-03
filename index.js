@@ -44,7 +44,6 @@ const addBook = (request, response) => {
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/views/login.html')
 		console.log(req.action);
-    //console.log(getBooks);
 });
 
 app.post('/auth', function(request, response) {
@@ -58,7 +57,13 @@ app.post('/auth', function(request, response) {
     if(error){
       throw error
     }
-    	response.status(200).json(results.rows)
+      response.status(200).json(results.rows.title)
+      response.status(200).json(results.rows.author)
+      console.log(results);
+      console.log(results.rows);
+      console.log(results.rows[0]);
+      console.log(results.rows[0].title);
+      console.log(results.rows[0].author);
   })
 });
 
