@@ -58,36 +58,36 @@ app.post('/auth', function(request, response) {
     if(error){
       throw error
     }
-    	response.status(200).json(results.rows[0].author)
+    	response.status(200).json(results.rows)
   })
 });
 
-app.get('/inventory', function(req,res) {
-  var query = "select * from inventory where ingredient_quantity > 10;";
-  var query1 = "select * from inventory where ingredient_quantity <= 10";
-  db.task('get-everything', task => {
-    return task.batch([
-      task.any(query),
-      task.any(query1)
-    ]);
-  })
-  .then(data => {
-    res.render('inventory.pug', {
-      my_title: "Inventory Page",
-      inventory_item_Full: data[0],
-      inventory_item_AlmostEmpty: data[1]
-
-    })
-  })
-  .catch(error => {
-    console.log("error");
-    res.render('inventory.pug', {
-      my_title: "Inventory Page",
-      inventory_item_Full: "",
-      inventory_item_AlmostEmpty: ""
-    })
-  })
-});
+// app.get('/inventory', function(req,res) {
+//   var query = "select * from inventory where ingredient_quantity > 10;";
+//   var query1 = "select * from inventory where ingredient_quantity <= 10";
+//   db.task('get-everything', task => {
+//     return task.batch([
+//       task.any(query),
+//       task.any(query1)
+//     ]);
+//   })
+//   .then(data => {
+//     res.render('inventory.pug', {
+//       my_title: "Inventory Page",
+//       inventory_item_Full: data[0],
+//       inventory_item_AlmostEmpty: data[1]
+//
+//     })
+//   })
+//   .catch(error => {
+//     console.log("error");
+//     res.render('inventory.pug', {
+//       my_title: "Inventory Page",
+//       inventory_item_Full: "",
+//       inventory_item_AlmostEmpty: ""
+//     })
+//   })
+// });
 
 // Start server
 app.listen(process.env.PORT || 3002, () => {
