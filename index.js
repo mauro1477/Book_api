@@ -68,22 +68,17 @@ app.post('/register', function(req, res) {
 
 app.post('/create_user', function(req, res) {
   console.log('/create_user');
-  
   var user_name_node = req.body.user_name_html;
   var phone_node = req.body.phone_html;
   var Address_line_1_node = req.body.Address_line_1;
   var Address_line_2_node = req.body.Address_line_2_html;
   var user_password_node = req.body.user_password_html;
-  console.log(user_name_node);
-  console.log(phone_node);
-  console.log(Address_line_1_node);
-  console.log(Address_line_2_node);
-  console.log(user_password_node);
   pool.query('INSERT INTO users (user_name, phone, address_line_1, address_line_2, user_password) VALUES ($1, $2, $3, $4, $5)',[user_name_node, phone_node, Address_line_1_node, Address_line_2_node, user_password_node], (error, results) => {
     if (error) {
       throw error
     }
     console.log("user was created");
+    res.redirect('/views/home.html');
   })
 });
 
