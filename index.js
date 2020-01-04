@@ -41,7 +41,6 @@ app.post('/request_book_node', function(request, response) {
     response.status(200).json(results.rows)
   })
 });
-
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/views/login.html')
 		console.log(req.action);
@@ -62,7 +61,7 @@ app.post('/auth', function(request, response) {
 
 app.post('/register', function(req, res) {
   console.log('/register');
-  res.sendFile(__dirname + '/views/create_user.html')
+  res.sendFile(__dirname + '/views/register.html')
   console.log(req.action);
 });
 
